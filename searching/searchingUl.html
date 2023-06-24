@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searching Ul</title>
+</head>
+<body >
+    <input type="text" id="input" onkeyup="search()" placeholder="search item..">
+    <div>
+        <ul id="list">
+            <li>APPLE</li>
+            <li>BANANA</li>
+            <li>ORANGE</li>
+            <li>STRAWBERRY</li>
+            <li>GRAPES</li>
+            <li>WATERMELON</li>
+            <li>PINEAPPLE</li>
+            <li>MANGO</li>
+            <li>KIWI</li>
+            <li>PEACH</li>
+            <li>PLUM</li>
+            <li>PEAR</li>
+            <li>CHERRY</li>
+            <li>BLUEBERRY</li>
+            <li>RASPBERRY</li>
+            <li>BLACKBERRY</li>
+            <li>POMEGRANATE</li>
+            <li>LEMON</li>
+            <li>LIME</li>
+            <li>AVOCADO</li>
+        </ul>
+    </div>
+
+    <script>
+        function search(){
+            const input = document.getElementById('input').value
+            const list = document.getElementById('list')
+            const listItem = list.getElementsByTagName('li')
+            
+            for (let i = 0; i < listItem.length; i++) {
+                if(listItem[i].innerText.includes(input.toUpperCase())){
+                    listItem[i].style.display = 'list-item'
+                } else{
+                    listItem[i].style.display = 'none'
+                }
+            }
+        }
+    </script>
+</body>
+</html>

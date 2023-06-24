@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searching table</title>
+    <style>
+        *{font-family: sans-serif;}
+        table {
+            text-transform: uppercase;
+        }
+        div{
+            width: fit-content;
+            margin: auto;
+        }
+        input{
+            width: 300px;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2 style="text-align: center;">Search Student</h2>
+        <input type="text" id="input" onkeyup="search()" placeholder="search student..">
+    </div>
+    <br><br>
+    <div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Roll</th>
+                    <th>Name</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody id="table">
+                <tr>
+                    <td>1</td>
+                    <td>Rajvi Mali</td>
+                    <td>Valsad</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Vidhi Soni</td>
+                    <td>Mumbai</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Kevin chauhan</td>
+                    <td>Surat</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Jay Nandurbarwala</td>
+                    <td>Surat</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Krish shah</td>
+                    <td>Sachin</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Monil Nakrani</td>
+                    <td>Surat</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Meet Lakhani</td>
+                    <td>Surat</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function search() {
+            const input = document.getElementById('input').value
+            const tableList = document.getElementById('table').getElementsByTagName('tr')
+
+            for (let i = 0; i < tableList.length; i++) {
+                if (tableList[i].innerText.includes(input.toUpperCase())) {
+                    tableList[i].style.display = 'table-row'
+                } else {
+                    tableList[i].style.display = 'none'
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

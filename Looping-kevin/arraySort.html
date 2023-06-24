@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Sorting</title>
+</head>
+
+<body>
+    <h2>Add number and then sort</h2>
+    <input type="text" id="input"> 
+    <br>
+    <br>
+    <button onclick="add()">Add</button>
+    <button onclick="sort()">Sort</button>
+    <h2 id="array"></h2>
+    <h2 id="result"></h2>
+
+    <script>
+        let arr = []
+        function add() {
+            const input = parseInt(document.getElementById("input").value)
+            const array = document.getElementById('array')
+            arr.push(input)
+            array.innerHTML = 'Array is : ' + arr
+            
+        }
+        function sort() {
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < arr.length - i; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        let temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+            document.getElementById('result').innerHTML = 'Sorted array is : '+arr
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max And Min</title>
+</head>
+
+<body>
+    <h2>Max And Min</h2>
+    <input type="text" id="input"> 
+    <br>
+    <br>
+    <button onclick="add()">Add</button>
+    <button onclick="find()">Get</button>
+    <h2 id="array"></h2>
+    <h2 id="result"></h2>
+
+    <script>
+        let arr = []
+        function add() {
+            const input = parseInt(document.getElementById("input").value)
+            const array = document.getElementById('array')
+            arr.push(input)
+            array.innerHTML = 'Array is :' + arr
+        }
+        function find() {
+            let largest = arr[0]
+            let smallest = arr[0]
+            for (let i = 0; i < arr.length; i++) {
+                    if (arr[i] > largest) {
+                        largest = arr[i]
+                    }
+                    if (arr[i] < smallest) {
+                        smallest = arr[i]
+                    }
+                    
+            }
+            document.getElementById('result').innerHTML = 'Largest element is : '+ largest+'<br>Smallest element is : '+ smallest
+        }
+    </script>
+</body>
+
+</html>

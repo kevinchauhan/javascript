@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove duplicates from array</title>
+</head>
+
+<body>
+    <h2>JavaScript program to remove duplicate items from an array</h2>
+    <input type="text" id="input" placeholder="enter number">
+    <br>
+    <br>
+    <button onclick="add()">Add</button>
+    <h2>Array is : [ <span id="array"></span> ]</h2>
+    <h2>After removing duplictes : [ <span id="result"></span> ]</h2>
+
+    <script>
+        let arr = []
+        function add() {
+            const input = parseInt(document.getElementById("input").value)
+            const array = document.getElementById('array')
+            arr.push(input)
+            array.innerHTML = arr
+
+            removeDuplicates()
+        }
+        // removes duplicates and displays them
+        function removeDuplicates() {
+            let uniqueArr = []
+            arr.forEach((value)=>{
+                if(!(uniqueArr.includes(value))){
+                    uniqueArr.push(value)
+                }
+            })
+            document.getElementById('result').innerText = uniqueArr
+        }
+    </script>
+</body>
+
+</html>

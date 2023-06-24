@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyanamic Table</title>
+    <style>
+        table td{
+            width: 100px;
+            height: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Dynamic Table</h2>
+    <label for="">How many rows ? </label>
+    <input type="text" placeholder="Enter number" id="row"> <br> <br>
+    <label for="">How many cols ? </label>
+    <input type="text" placeholder="Enter number" id="col"> <br><br>
+    <button onclick="get()">Submit</button>
+<br><br>
+    <table border="2" style="display: none;">
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+
+    <script>
+        function get() {
+            const row = document.getElementById('row').value
+            const col = document.getElementById('col').value
+            const tbody = document.getElementById('tbody')
+            let data = ''
+            for (let i = 0; i < row; i++) {
+                data += '<tr>'
+                for (let j = 0; j < col; j++) {
+                    data += '<td> </td>'
+                }
+                data += '</tr>'
+            }
+            tbody.innerHTML = data
+            document.getElementsByTagName("table")[0].style.display = 'table'
+        }
+    </script>
+</body>
+
+</html>

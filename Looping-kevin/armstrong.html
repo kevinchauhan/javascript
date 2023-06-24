@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armstrong Number</title>
+</head>
+
+<body>
+    <h1>Find Armstong's number</h1>
+    <input type="number" id="input" placeholder="Enter 3 digit">
+    <button onclick="get()">submit</button>
+    <h2 id="result"></h2>
+
+    <script>
+        function get() {
+            const result = document.getElementById('result')
+            let num = parseInt(document.getElementById('input').value)
+            const temp = num
+            let ans = 0
+            while (num != 0) {
+                let digit = num % 10
+                ans += (digit * digit * digit)
+                num = Math.trunc((num / 10))
+            }
+            if (ans == temp) {
+                result.innerHTML = 'It is armstrong number'
+            } else {
+                result.innerHTML = 'It is not armstrong number'
+            }
+        }
+    </script>
+</body>
+
+</html>

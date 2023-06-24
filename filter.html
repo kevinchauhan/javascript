@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .box {
+            width: 500px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        .img-box {
+            width: 33.33%;
+            border: 2px solid black;
+            box-sizing: border-box;
+        }
+
+        .btn-box {
+            width: 100%;
+            text-align: center;
+            margin: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="btn-box">
+        <button class="btn" onclick="filt('all')">All</button>
+        <button class="btn" onclick="filt('car')">Car</button>
+        <button class="btn" onclick="filt('animal')">Animal</button>
+        <button class="btn" onclick="filt('food')">Food</button>
+    </div>
+    <div class="box">
+        <div class="img-box" data-filter="car">
+            <img src="https://source.unsplash.com/random/400x400?car" />
+        </div>
+        <div class="img-box" data-filter="animal">
+            <img src="https://source.unsplash.com/random/200x200?cat" />
+        </div>
+        <div class="img-box" data-filter="animal">
+            <img src="https://source.unsplash.com/random/200x200?lion" />
+        </div>
+        <div class="img-box" data-filter="animal">
+            <img src="https://source.unsplash.com/random/300x300?dog" />
+        </div>
+        <div class="img-box" data-filter="food">
+            <img src="https://source.unsplash.com/random/600x600?food" />
+        </div>
+        <div class="img-box" data-filter="car">
+            <img src="https://source.unsplash.com/random/600x600?car" />
+        </div>
+        <div class="img-box" data-filter="food">
+            <img src="https://source.unsplash.com/random/500x500?food" />
+        </div>
+        <div class="img-box" data-filter="animal">
+            <img src="https://source.unsplash.com/random/400x400?tiger" />
+        </div>
+        <div class="img-box" data-filter="car">
+            <img src="https://source.unsplash.com/random/300x300?car" />
+        </div>
+    </div>
+
+    <script>
+        function filt(arg) {
+            const element = document.getElementsByClassName('img-box')
+
+            // first used these because filter method was not working
+
+            // for (let i = 0; i < element.length; i++) {
+            //     if (arg == 'all') {
+            //         element[i].style.display = 'block'
+            //     } else if (element[i].getAttribute('data-filter') !== arg) {
+            //         element[i].style.display = 'none'
+            //     } else {
+            //         element[i].style.display = 'block'
+            //     }
+            // }
+            
+            // but after using Array.from() method filter method starts working
+            elementArray = Array.from(element)
+            elementArray.filter((e) => {
+                if (arg == 'all') {
+                    e.style.display = 'block'
+                } else if (e.getAttribute('data-filter') !== arg) {
+                    e.style.display = 'none'
+                } else {
+                    e.style.display = 'block'
+                }
+            })
+        }
+    </script>
+
+</body>
+
+</html>

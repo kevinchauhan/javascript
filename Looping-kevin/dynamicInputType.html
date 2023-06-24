@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Input</title>
+</head>
+<body>
+    <h2>Dyanamic Input</h2>
+    <label for="">How many input type you want? </label>
+    <input type="text" placeholder="Enter number" id="input">
+    <button onclick="get()">Submit</button>
+    <div id="data">
+
+    </div>
+    <script>
+        function get(){
+            const input = document.getElementById('input')
+            const data = document.getElementById('data')
+            var name =''
+            for (let i = 0; i < parseInt(input.value); i++) {
+                data.innerHTML += '<br/><br/><label for="">Input' + i+1 +'</label><input type="text" placeholder="Input created">'
+            }
+        }
+    </script>
+</body>
+</html>

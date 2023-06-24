@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real time char count</title>
+</head>
+<body>
+    <input type="text" id="input" placeholder="type something..." onkeyup="count()">
+    <h2>Char count : <span id="counter">0</span></h2>
+    <script>
+        function count(){
+            const input = document.getElementById("input").value
+            document.getElementById('counter').innerText = input.length
+        }
+    </script>
+</body>
+</html>

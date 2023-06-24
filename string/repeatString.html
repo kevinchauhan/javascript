@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repeat</title>
+</head>
+<body>
+    <label for="">Enter string</label>
+    <input type="text" id="input" placeholder="type something..." > <br> <br>
+    <label for="">Enter number of repeatation</label>
+    <input type="number" id="number" placeholder="number of repeatation" > <br><br>
+    <button onclick="repeat()">Get string</button>
+    <div id="data"></div>
+    <script>
+        function repeat(){
+            const inputString = "<h2>" + document.getElementById("input").value + "</h2>"
+            const inputNumber = parseInt(document.getElementById("number").value)
+
+            const repeat = inputString.repeat(inputNumber)
+            document.getElementById("data").innerHTML = repeat
+        }
+    </script>
+</body>
+</html>
