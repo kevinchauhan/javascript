@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Operation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <h1 class="text-center">CRUD OPERATION</h1>
+    <div class="mx-auto my-3 col-6 border p-3 rounded">
+        <div class="mb-2">
+            <label for="">Name</label>
+            <input class="form-control" id="user-name" type="text" placeholder="Kevin">
+        </div>
+        <div class="mb-2">
+            <label for="">Email</label>
+            <input class="form-control" id="user-email" type="text" placeholder="kevin@gamil.com">
+        </div>
+        <div class="mb-2">
+            <label for="">Address</label>
+            <input class="form-control" id="user-add" type="text" placeholder="surat">
+        </div>
+        <div class="text-center mt-3">
+            <button class="btn btn-success" id="add-btn" onclick="add()">Save</button>
+        </div>
+    </div>
+    <div class="list p-3">
+        <table class="table table-bordered rounded rounded-3">
+            <thead class="bg-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <!-- data will be display dynamically inside tbody -->
+            <tbody id="user-data-list">
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // data will stored in this empty array
+        let dataList = []
+
+        // insert operation
+        function add() {
+            // getting data from user inputs
+            const inputName = document.getElementById('user-name')
+            const inputEmail = document.getElementById('user-email')
+            const inputAdd = document.getElementById('user-add')
+
+            // storing user data into object
+            const userData = {
+                name: inputName.value,
+                email: inputEmail.value,
+                add: inputAdd.value
+            }
+            // pushing above object into the array
+            dataList.push(userData)
+
+            // emtpying input fields after saving
+            inputName.value = ""
+            inputEmail.value = ""
+            inputAdd.value = ""
+
+            display() // to display in table
+        }
+
+        // delete operation
+        function deleteData(index) {
+            dataList.splice(index, 1)  // deleting that object from the array
+            display()
+        }
+
+        // edit function
+        function edit(index) {
+            // getting user input element
+            const inputName = document.getElementById('user-name')
+            const inputEmail = document.getElementById('user-email')
+            const inputAdd = document.getElementById('user-add')
+
+            // displaying values of data to be edited to thier respective input type
+            inputName.value = dataList[index].name
+            inputEmail.value = dataList[index].email
+            inputAdd.value = dataList[index].add
+
+            // getting add btn element and changes its onclick attibute and innerHTML
+            const btn = document.getElementById('add-btn')
+            btn.setAttribute('onclick', `update(${index})`)
+            btn.innerHTML = 'Update'
+        }
+
+        // update operation
+        function update(index) {
+            // getting user input element
+            const inputName = document.getElementById('user-name')
+            const inputEmail = document.getElementById('user-email')
+            const inputAdd = document.getElementById('user-add')
+
+            // updating value in array with new values changed by the user
+            dataList[index].name = inputName.value
+            dataList[index].email = inputEmail.value
+            dataList[index].add = inputAdd.value
+
+            // getting add btn element and changes its onclick attibute and innerHTML to default
+            const btn = document.getElementById('add-btn')
+            btn.setAttribute('onclick', `add()`)
+            btn.innerHTML = 'Save'
+
+            // emtpying input fields after updating
+            inputName.value = ""
+            inputEmail.value = ""
+            inputAdd.value = ""
+
+            display()
+        }
+
+        // display function
+        function display() {
+            const userDataList = document.getElementById('user-data-list') //getting tbody element
+
+            let temp = ''
+            for (let index = 0; index < dataList.length; index++) {     // this loop is for <tr> and runs upto length of data array
+                temp += '<tr>' //opening <tr> tag
+
+                // this loop is for <td>
+                for (value of Object.values(dataList[index])) {  // getting value of each key one by one
+                    temp += `<td>${value}</td>`
+                }
+
+                // creating button to edit/delete with current index of array
+                const btn = `<button class='btn btn-primary me-3' onclick="edit(${index})">Edit</button><button class='btn btn-danger' onclick="deleteData(${index})">Delete</button>`
+
+                temp += `<td>${btn}</td> </tr>` //inserting that buttons in last <td> and closing </tr> tag
+            }
+            userDataList.innerHTML = temp   //inserting temp into tbody element
+        }
+    </script>
+</body>
+
+</html>
