@@ -72,43 +72,44 @@
         const gender = document.form.gender
         const city = document.form.city
         let submitForm = false
+        let nameError = false
+        let emailError = false
+        let passError = false
+        let genderError = false
+        let cityError = false
         
         if(name.value === ''){
             name.nextElementSibling.innerHTML = 'Enter valid name'
-            submitForm = false
         } else{
             name.nextElementSibling.innerHTML = ''
-            submitForm = true
+            nameError = true
         }
         if(email.value === ''){
             email.nextElementSibling.innerHTML = 'Enter valid email'
-            submitForm = false
         } else{
             email.nextElementSibling.innerHTML = ''
-            submitForm = true
+            emailError = true
         }
         if(password.value === ''){
             password.nextElementSibling.innerHTML = 'Enter valid password'
-            submitForm = false
         } else{
             password.nextElementSibling.innerHTML = ''
-            submitForm = true
+            passError = true
         }
         if(city.value === ''){
             city.nextElementSibling.innerHTML = 'Please select a city'
-            submitForm = false
         } else{
             city.nextElementSibling.innerHTML = ''
-            submitForm = true
+            cityError = true
         }
         if(gender.value === ''){
             document.getElementById('gender-error').innerHTML = 'Please select gender'
-            submitForm = false
         } else{
             document.getElementById('gender-error').innerHTML = ''
-            submitForm = true
+            genderError = true
         }
-        if(submitForm){
+        if(nameError==true && emailError==true && passError==true && cityError==true && genderError==true){
+            submitForm = true
             alert("Your form succesfully submitted...")
         }
         
