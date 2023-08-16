@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>extracts unique characters from a string</h1>
+
+    <script>
+        const uniqueChar = (str) => {
+            let uniqueStr = ''
+
+            for (let i = 0; i < str.length; i++) {
+
+                if (!uniqueStr.includes(str[i])) {
+                    uniqueStr += str[i]
+                }
+
+            }
+
+            console.log(uniqueStr)
+        }
+
+        uniqueChar('abcndbcabgfd')
+    </script>
+</body>
+
+</html>

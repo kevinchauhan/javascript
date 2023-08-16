@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1> first not repeated character.</h1>
+
+    <script>
+        const firstNonRepeated = (str) => {
+
+            for (let i = 0; i < str.length; i++) {
+                if (str.indexOf(str[i]) == str.lastIndexOf(str[i])) {
+                    console.log("first not repeated char is", str[i])
+                    return str[i]
+                }
+            }
+        }
+
+        firstNonRepeated('abacddbeck')
+    </script>
+</body>
+
+</html>

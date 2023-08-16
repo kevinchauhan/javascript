@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1> finds the longest word within the string</h1>
+
+    <script>
+        const longestWord = (str) => {
+
+            const arr = str.split(' ')
+
+            let longest = str[0]
+
+            arr.forEach(element => {
+
+                if (longest.length < element.length) {
+                    longest = element
+                }
+
+            });
+
+            console.log(longest)
+
+            return longest
+        }
+
+        longestWord('Web Development Tutorial')
+
+    </script>
+</body>
+
+</html>

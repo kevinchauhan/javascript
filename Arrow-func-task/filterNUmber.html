@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const filterNumber = (arr) => {
+            const sortedArr = arr.sort()
+            const length = sortedArr.length - 1
+            console.log(`Second lowest is ${sortedArr[1]}`)
+            console.log(`Second greatest is ${sortedArr[length - 1]}`)
+        }
+
+        const arr = [6, 5, 3, 1, 4]
+        filterNumber(arr)
+    </script>
+</body>
+
+</html>

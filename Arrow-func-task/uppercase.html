@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Uppercase first letter of each word</h1>
+    <script>
+        const capitalize = (str) => {
+            const strArr = str.split(' ')
+
+            const capitalizeArr = strArr.map(element => {
+                return element.charAt(0).toUpperCase() + element.slice(1)
+            });
+
+            const capitalizeStr = capitalizeArr.join(' ')
+            console.log(capitalizeStr)
+
+            return capitalizeStr
+        }
+
+        const str = 'write any string'
+        capitalize(str)
+    </script>
+</body>
+
+</html>
