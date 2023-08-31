@@ -79,25 +79,12 @@
     <script>
         function filt(arg) {
             const element = document.getElementsByClassName('img-box')
-
-            // first used these because filter method was not working
-
-            // for (let i = 0; i < element.length; i++) {
-            //     if (arg == 'all') {
-            //         element[i].style.display = 'block'
-            //     } else if (element[i].getAttribute('data-filter') !== arg) {
-            //         element[i].style.display = 'none'
-            //     } else {
-            //         element[i].style.display = 'block'
-            //     }
-            // }
             
-            // but after using Array.from() method filter method starts working
             elementArray = Array.from(element)
             elementArray.filter((e) => {
                 if (arg == 'all') {
                     e.style.display = 'block'
-                } else if (e.getAttribute('data-filter') !== arg) {
+                } else if (e.dataset.filter !== arg) {
                     e.style.display = 'none'
                 } else {
                     e.style.display = 'block'

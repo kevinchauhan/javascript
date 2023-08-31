@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atm Machine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex justify-center items-center min-h-screen bg-blue-500">
+    <!-- login start -->
+    <div class="w-1/2 p-5 flex justify-center items-center border" id="login">
+        <div class="w-1/2 mx-auto text-center">
+            <form action="" name="atmForm">
+                <label for="" class="text-xl">User Id(admin)</label>
+                <div class="w-1/2 mx-auto">
+                    <input type="text" name="uid" class="focus:outline-yellow-500 rounded px-3 py-1 my-2">
+                </div>
+                <label for="" class="text-xl" id="get-pin">Pin(1234)</label>
+                <div class="w-1/2 mx-auto">
+                    <input type="password" maxlength="4" name="pin"
+                        class="focus:outline-yellow-500 rounded px-3 py-1 my-2">
+                </div>
+                <p id="error" class=" mt-1 text-red"></p>
+        </div>
+        </form>
+    </div>
+    <!-- login end -->
+
+    <!-- dashboard start -->
+    <div class="w-1/2 border border-black flex flex-wrap p-5 justify-center items-center hidden" id="dashboard">
+        <div class="w-1/2">
+            <div class="mb-10">
+                <button class="text-yellow-300 p-1" onclick="action('deposit')">Deposit</button>
+            </div>
+            <div class="mt-10">
+                <button class="text-yellow-300 p-1" onclick="action('withdraw')">Withdraw</button>
+            </div>
+        </div>
+        <div class="w-1/2 text-end">
+            <div class="mb-10">
+                <button class="text-yellow-300 p-1" onclick="action('balance')">Balance</button>
+            </div>
+            <div class="mt-10">
+                <button class="text-yellow-300 p-1" onclick="action('pin')">Change PIN</button>
+            </div>
+        </div>
+    </div>
+    <!-- dashboard end -->
+
+    <!-- inputs start -->
+    <div class="w-1/2 border border-black flex flex-wrap p-5 justify-center items-center hidden" id="input">
+        <h3 class="text-xl font-medium" id="input-msg">Enter Amount</h3>
+        <form action="" onsubmit="return set()" class="w-full text-center">
+            <div class="w-full text-center mt-2">
+                <input type="number" id="input-value" class="outline-yellow-500 px-3 py-1" required>
+            </div>
+            <button class="bg-green-800 text-yellow-300 px-5 py-1 mt-3">Confirm</button>
+        </form>
+    </div>
+    <!-- inputs end -->
+
+    <!-- output start -->
+    <div class="w-1/2 border border-black flex flex-wrap p-5 justify-center items-center hidden" id="output">
+        <h3 class="text-xl font-medium text-yellow-300" id="output-msg"></h3>
+    </div>
+    <!-- output end -->
+
+
+
+    <script>
+        // setting user in localstorage
+        let localData = JSON.parse(localStorage.getItem('my-atm'))
+        if (!localData) {
+            const userData = { uid: 'admin', pin: '1234', balance: 5000 }
+            localStorage.setItem('my-atm', JSON.stringify(userData))
+            localData = userData
+        }
+        // set pin in login
+        document.getElementById('get-pin').innerText = `Pin(${localData.pin})`
+
+        //elements
+        const login = document.querySelector('#login')
+        const dashboard = document.querySelector('#dashboard')
+        const input = document.querySelector('#input')
+
+        // auth
+        const form = document.atmForm
+        form.pin.addEventListener('keyup', (e) => {
+            if (e.target.value.length >= 4) {
+                const uid = form.uid.value
+                const pin = e.target.value
+                if (uid == localData.uid && pin == localData.pin) {
+                    login.style.display = 'none'
+                    dashboard.style.display = 'flex'
+                } else {
+                    document.querySelector('#error').innerText = 'invalid userID or pin'
+                }
+            }
+
+        })
+
+        // inputs
+        const inputValue = document.getElementById('input-value')
+        let method = ''
+        function action(args) {
+            console.log(args)
+            method = args
+            if (args == 'balance') {
+                set()
+            } else {
+                dashboard.style.display = 'none'
+                input.style.display = 'flex'
+            }
+            if (args == 'pin') {
+                document.getElementById('input-msg').innerText = 'Enter new pin'
+                inputValue.type = 'password'
+                inputValue.setAttribute('maxlength','4')
+            }
+        }
+
+        // output
+        function set(e) {
+            const value = parseInt(inputValue.value)
+            const output = document.getElementById('output')
+            const outputMsg = document.getElementById('output-msg')
+
+            switch (method) {
+                case 'balance':
+                    outputMsg.innerHTML = 'Your Balance is : ' + localData.balance
+                    break
+
+                case 'deposit':
+                    localData.balance += value
+                    outputMsg.innerHTML = 'Your Balance after deposit is : ' + localData.balance
+                    break
+
+                case 'withdraw':
+                    if(value> localData.balance){
+                        outputMsg.innerHTML = 'Insufficient balance!'
+                        break
+                    }
+                    localData.balance -= value
+                    outputMsg.innerHTML = 'Your Balance after withdraw is : ' + localData.balance
+                    break
+                    
+                    case 'pin':
+                        localData.pin = inputValue.value
+                        outputMsg.innerHTML = 'Your pin is succesfully updated' 
+                    break
+            }
+            localStorage.setItem('my-atm', JSON.stringify(localData))
+            dashboard.style.display = 'none'
+            input.style.display = 'none'
+            output.style.display = 'flex'
+
+            return false
+        }
+
+    </script>
+</body>
+
+</html>
