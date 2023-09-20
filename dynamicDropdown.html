@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        select{
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="">Country</label>
+    <select name="" id="country" onchange="getState(this.value)">
+        <option value="">--select country--</option>
+    </select>
+    
+    <label for="">State</label>
+    <select name="" id="state" onchange="getCity(this.value)">
+        <option value="">--select state--</option>
+    </select>
+    
+    <label for="">City</label>
+    <select name="" id="city">
+        <option value="">--select city--</option>
+    </select>
+
+
+
+
+    <script>
+        const countryDetails = {
+            india: {
+                gujarat: ['Ahmedabad', 'Vadodara', 'surat','valsad'],
+                andhra_pradesh: ['vizag','tirupati','amravati','Guntur'],
+                maharastra: ['mumbai','nashik','pune']
+            },
+            usa: {
+                california: ['Los angeles', 'San Fansisco'],
+                pennsylvania: ['philadelphia','pittsburgh']
+            }
+        }
+
+        // get countries
+        let currentCountry
+        const countryList = Object.keys(countryDetails)
+        const countryHtml = displayOptions(countryList, 'country')
+        document.querySelector('#country').innerHTML = countryHtml
+
+        // get states
+        function getState(country) {
+            currentCountry = country
+            const stateList = Object.keys(countryDetails[country])
+            document.querySelector('#state').innerHTML = displayOptions(stateList,'state')
+            
+            document.querySelector('#city').innerHTML = '<option value="">--select city--</option>'
+        }
+
+        // get cities
+        function getCity(state) {
+            const cityList = countryDetails[currentCountry][state]
+            document.querySelector('#city').innerHTML = displayOptions(cityList,'city')
+        }
+
+        // displays options
+        function displayOptions(arr, name) {
+            let html = `<option value="">--select ${name}--</option>`
+            arr.forEach(e => {
+                if (e.includes('_')) {
+                    const spacedString = e.split('_').join(' ')
+                    const markup = `<option value="${e}">${spacedString}</option>`
+                    html += markup
+                } else {
+                    const markup = `<option value="${e}">${e}</option>`
+                    html += markup
+                }
+            })
+            return html
+        }
+    </script>
+</body>
+
+</html>
