@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+        body{
+            background-color: rgb(15, 15, 15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        span{
+            color: rgb(90, 228, 56);
+            font-size: 3.125rem;
+        }
+        div{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <span id="time">01</span>
+    </div>
+
+
+    <script>
+        function clock(){
+            const time = document.getElementById('time')
+
+            // getting current time
+            const currTime = new Date()
+            let hour = currTime.getHours()
+            let min = currTime.getMinutes()
+            let second = currTime.getSeconds()
+            let session = ""
+
+            // convert to 1pm format
+            if(hour>12){
+                hour -= 12
+                session = 'PM'
+            }  else{
+                session = 'AM'
+            }
+
+            // adding 0 to single digit
+            if(hour<10) hour = `0${hour}`
+            if(min<10) min = `0${min}`
+            if(second<10) second = `0${second}`
+
+            time.innerText = `${hour} : ${min} : ${second} ${session}`
+            setTimeout(clock,1000)
+        }
+        clock()
+    </script>
+</body>
+</html>
