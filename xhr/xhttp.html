@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        const url = 'https://jsonplaceholder.typicode.com/users'
+        const http = new XMLHttpRequest()
+        
+        http.open('GET',url)
+        http.addEventListener('load',(e)=>{
+            const xhr = JSON.parse(e.target.response)
+            console.log(xhr[0])
+        })
+        http.send()
+    </script>
+</body>
+</html>
