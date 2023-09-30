@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="margin: 20px 0; text-align: center; padding: 20px 0;">
+        <input type="text" onkeyup="search()">
+    </div>
+
+    <script>
+        const search = debounce(() => {
+            console.log('hi')
+        })
+
+
+        function debounce(cb, time = 500) {
+            let timer
+            return (...args) => {
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                    cb.apply(this, args)
+                }, time)
+            }
+        }
+    </script>
+</body>
+
+</html>
