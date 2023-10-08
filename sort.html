@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort</title>
+</head>
+
+<body>
+    <label>Enter number 1(x)</label>
+    <input type="number" id="num-1">
+    <br>
+    <br>
+    <label>Enter number 2(y)</label>
+    <input type="number" id="num-2">
+    <br>
+    <br>
+    <label>Enter number 3(z)</label>
+    <input type="number" id="num-3">
+    <br>
+    <br>
+    <label>Sorted decending</label>
+    <input type="text" id="result">
+    <br>
+    <br>
+
+    <button onclick="getData()">Calculate</button>
+
+    <script>
+        function getData() {
+            const x = parseInt(document.getElementById("num-1").value)
+            const y = parseInt(document.getElementById("num-2").value)
+            const z = parseInt(document.getElementById("num-3").value)
+            const result = document.getElementById("result")
+
+            if (x > y && y > z) {
+                console.log("xyz")
+                result.value = "xyz"
+            } else if (y > x && x > z) {
+                console.log("yxz")
+                result.value = "yxz"
+            } else if (z > x && x > y) {
+                console.log("zxy")
+                result.value = "zxy"
+            } else if (x > z && z > y) {
+                console.log("xzy")
+                result.value = "xzy"
+            } else if (y > z && z > x) {
+                console.log("yzx")
+                result.value = "yzx"
+            } else if (z > y && y > x) {
+                console.log("zyx")
+                result.value = "zyx"
+            }
+        }
+
+    </script>
+</body>
+
+</html>
