@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Color Change</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body style="background-color: rgb(19, 18, 18);">
+    <div class="card mx-auto border mt-10 rounded" style="width: 500px;">
+        <div class="img p-8 bg-white">
+            <img src="https://imgd.aeplcdn.com/370x208/n/rycjf4a_1518663.jpg?q=75" alt="" width="100%">
+        </div>
+        <div class="dsc bg-slate-200 border-t p-5">
+            <h3 class="mb-5 text-2xl font-bold">Mercedes-Benz GLA</h3>
+            <div class="flex flex-wrap justify-between items-center">
+                <h3 class="w-full font-semibold mb-1">Colors available</h3>
+                <ul class="flex gap-2">
+                    <li onclick="get('gray')" class="cursor-pointer bg-gray-500 w-5 h-5"></li>
+                    <li onclick="get('blue')" class="cursor-pointer w-5 h-5" style="background-color: #091c2f;"></li>
+                    <li onclick="get('black')" class="cursor-pointer bg-black w-5 h-5"></li>
+                </ul>
+                <span class="font-semibold">Rs. 50,00,000</span>
+            </div </div>
+        </div>
+
+        <script>
+            function get(id) {
+                const img = document.querySelector('img')
+                switch (id) {
+                    case 'blue': img.src = 'https://imgd.aeplcdn.com/370x208/n/p6fjf4a_1518667.jpg?q=75'
+                        break
+                    case 'black': img.src = 'https://imgd.aeplcdn.com/370x208/n/dnejf4a_1518665.jpg?q=75'
+                        break
+                    case 'gray': img.src = 'https://imgd.aeplcdn.com/370x208/n/rycjf4a_1518663.jpg?q=75'
+                        break
+
+                }
+            }
+        </script>
+</body>
+
+</html>
