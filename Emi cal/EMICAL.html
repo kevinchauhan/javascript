@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+            <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 uppercase">EMI
+                Calculator</h2>
+
+        <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+            <div>
+                <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Loan Type</label>
+                <div class="mb-2">
+                    <select onchange="loanType(this.value)" name="" id=""
+                        class="pl-3 outline-none block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <option value="">--Select--</option>
+                        <option value="11">Car</option>
+                        <option value="9">Home</option>
+                        <option value="18">Personal</option>
+                    </select>
+                </div>
+
+                <label for="" class="block text-sm font-medium leading-6 text-gray-900">Enter Principal Amount</label>
+                <div class="mb-2">
+                    <input id="prin-amt" name="" type="number"
+                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+                <label for="" class="block text-sm font-medium leading-6 text-gray-900">Period of loan (in
+                    months)</label>
+                <div class="mb-2">
+                    <input id="period" name="" type="number"
+                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+
+            </div>
+
+            <div class="my-2">
+                <button onclick="cal()" type="submit"
+                    class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Calculate</button>
+            </div>
+
+            <label for="" class="block text-sm font-medium leading-6 text-gray-900">Monthly EMI</label>
+            <div class="mb-2">
+                <input readonly id="emi" name="" type="number"
+                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+            <label for="" class="block text-sm font-medium leading-6 text-gray-900">Total Interest Payable</label>
+            <div class="mb-4">
+                <input readonly id="total-int" name="" type="number"
+                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+            <label for="" class="block text-sm font-medium leading-6 text-gray-900">Total Payment(Principal +
+                Interest)</label>
+            <div class="mb-4">
+                <input readonly id="total-amt" name="" type="number"
+                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // for rate of interest
+        let interest
+        // called by select
+        function loanType(int) {
+            interest = parseInt(int) // storing from selection box
+        }
+        // called by calculate button
+        function cal() {
+            // input values
+            const principalAmt = parseInt(document.getElementById("prin-amt").value)
+            const loanPeriod = parseInt(document.getElementById("period").value)
+            // output elements
+            const monthlyEmi = document.getElementById("emi")
+            const totInt = document.getElementById("total-int")
+            const totAmt = document.getElementById("total-amt")
+
+            // calculation
+            const monthlyRateOfInterest = interest / 12 / 100
+            const tempCal = Math.pow(1 + monthlyRateOfInterest, loanPeriod) // (1+R)^N it is calculated here
+            const emi = (principalAmt * monthlyRateOfInterest * tempCal) / (tempCal - 1) // emi formula
+
+            // printing on elements
+            monthlyEmi.value = emi.toFixed()        //toFixed() use to round 
+            totInt.value = (emi * loanPeriod - principalAmt).toFixed()
+            totAmt.value = (emi * loanPeriod).toFixed()
+        }
+    </script>
+
+</body>
+
+</html>
